@@ -1,3 +1,41 @@
 module.exports = {
-  presets: ['module:@react-native/babel-preset'],
+  presets: [
+    ['@babel/preset-env', {targets: {node: 'current'}}],
+    'module:@react-native/babel-preset',
+    '@babel/preset-typescript',
+  ],
+  plugins: [
+    '@babel/plugin-transform-runtime',
+    ['@babel/plugin-proposal-decorators', {legacy: true}],
+    ['@babel/plugin-transform-flow-strip-types'],
+    ['@babel/plugin-proposal-class-properties', {loose: true}],
+    [
+      'module-resolver',
+      {
+        root: ['.'],
+        alias: {
+          '@actions': './app/actions',
+          '@assets': './app/assets',
+          '@calls': './app/products/calls',
+          '@client': './app/client',
+          '@components': './app/components',
+          '@constants': './app/constants/index',
+          '@context': './app/context',
+          '@database': './app/database',
+          '@helpers': './app/helpers',
+          '@hooks': './app/hooks',
+          '@i18n': './app/i18n',
+          '@selectors': './app/selectors',
+          '@screens': './app/screens',
+          '@store': './app/store',
+          '@test': './test',
+          '@typings': './types',
+          '@utils': './app/utils',
+          '@websocket': './app/client/websocket',
+        },
+      },
+    ],
+    'react-native-reanimated/plugin',
+  ],
+  exclude: ['**/*.png', '**/*.jpg', '**/*.gif'],
 };
